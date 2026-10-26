@@ -119,23 +119,99 @@ not audited or verified destination-level profitability.
 See [CASE_STUDY.md](CASE_STUDY.md) for the methodology,
 detailed results, and limitations.
 
-## Selected Visualizations
+## Exploratory Data Analysis (EDA)
 
-### Audited Trip Volume
+The exploratory analysis examined seasonality, student
+participation, and changes in destination demand across
+two comparable school-year periods (October-June).
 
-![Audited trips](reports/figures/paseos_auditados.png)
+The analysis uses audited operational records, excluding
+trips confirmed as not performed.
 
-### Student Participation
+### 1. Monthly Trip Volume and Seasonality
 
-![Student participation](reports/figures/estudiantes_auditados.png)
+Trip volume declined from **386 to 325 trips (-15.80%)**.
 
-### Changes by Destination
+However, the decline was not uniform across months:
+
+- October: 111 to 94 trips.
+- December: 8 to 39 trips.
+- February: 58 to 24 trips.
+- May: 42 to 25 trips.
+- June: 59 to 57 trips.
+
+These differences illustrate the importance of
+seasonality and monthly demand patterns.
+
+![Monthly trip comparison](reports/figures/paseos_auditados.png)
+
+### 2. Student Participation
+
+Student participations declined from **51,017 to
+42,051 (-17.57%)**.
+
+These figures represent student-trip participations,
+not necessarily distinct individual students.
+
+![Student participation comparison](reports/figures/estudiantes_auditados.png)
+
+### 3. Destination-Level Performance
+
+Some destinations experienced declining activity,
+while others increased their trip volume.
+
+| Destination | 2024-2025 | 2025-2026 | Change |
+|---|---:|---:|---:|
+| Cine | 83 | 61 | -22 |
+| Flyers | 20 | 1 | -19 |
+| Mictlan | 51 | 36 | -15 |
+| Mundo Divertido | 12 | 0 | -12 |
+| Casian | 32 | 21 | -11 |
+| CECUT | 69 | 83 | +14 |
+| El Trompo | 45 | 51 | +6 |
+| Ruta del Maiz | 32 | 38 | +6 |
 
 ![Destination changes](reports/figures/cambios_destinos_auditados.png)
 
-### Semester Financial Performance
+### 4. Destination Availability Sensitivity
 
-![Financial comparison](reports/figures/comparacion_financiera_semestral.png)
+Flyers was affected by school-related restrictions,
+while Mundo Divertido was temporarily unavailable
+due to renovation.
+
+Excluding these destinations and associated packages:
+
+- Trip volume: 349 to 324 (-7.16%).
+- Student participations: 46,327 to 41,919 (-9.51%).
+
+This is a descriptive sensitivity analysis. It does
+not establish causal effects or explain the entire
+change in demand.
+
+### 5. Reproducibility
+
+The underlying monthly and destination-level
+aggregates are publicly available in `data/aggregated/`.
+
+The charts can be reproduced using:
+
+```bash
+python src/reproduce_operational_analysis.py
+```
+
+The confidential original records and the complete
+exploratory notebook remain private.
+
+## Financial Analysis Visualization
+
+The financial analysis compares reported revenues,
+expenses, accounting profit, and profit margins
+between January-June 2025 and January-June 2026.
+
+![Semester financial comparison](reports/figures/comparacion_financiera_semestral.png)
+
+For detailed financial findings and methodological
+limitations, see [CASE_STUDY.md](CASE_STUDY.md).
 
 ## Reproducible Public Analysis
 
